@@ -1,10 +1,13 @@
 import styled from "@emotion/styled";
 import { Link } from "react-router-dom";
+import { CustomLink } from "../UnauthenticatedApp";
 
 const typeColors = {
   grass: "#74CB48",
   electric: "#F9CF30",
   fire: "#F57D31",
+  normal: "white",
+  poison: "#c729ff",
 };
 
 const Wrapper = styled("div")`
@@ -14,7 +17,9 @@ const Wrapper = styled("div")`
 `;
 
 const PokeCard = styled("div")`
+  text-align: center;
   border: 2px solid ${({ type }) => typeColors[type]};
+  color: ${({ type }) => typeColors[type]};
 `;
 
 function FavoritesPage({ favorites }) {
@@ -26,7 +31,9 @@ function FavoritesPage({ favorites }) {
         </PokeCard>
       ))}
 
-      <Link to="/">Go back to search</Link>
+      <Link to="/" style={{ textDecoration: "none", margin: "0 auto" }}>
+        <CustomLink>Go to search</CustomLink>
+      </Link>
     </Wrapper>
   );
 }

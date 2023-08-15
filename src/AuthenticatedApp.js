@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 
+import { Button } from "./components/login-form";
+import styled from "@emotion/styled";
 import { useAuth } from "./context/auth-context";
 import SearchPage from "./pages/search-page";
 import FavoritesPage from "./pages/favorites-page";
@@ -10,6 +12,17 @@ import {
   getFavorites,
 } from "./services/favorites-service";
 
+const Container = styled.div`
+  margin: 90px auto;
+  border: 1px solid orange;
+  width: fit-content;
+
+  background-color: #191919;
+  padding: 30px;
+  border-radius: 15px;
+  gap: 25px;
+  min-height: 400px;
+`;
 function AuthenticatedApp() {
   const { logout } = useAuth();
   const [favorites, setFavorites] = useState([]);
@@ -47,8 +60,18 @@ function AuthenticatedApp() {
   }
 
   return (
-    <div>
-      <button onClick={logout}>Logout</button>
+    <Container>
+      <Button
+        style={{
+          maxHeight: "70px",
+          marginBottom: "30px",
+          gap: "15px",
+          alignItems: "center",
+        }}
+        onClick={logout}
+      >
+        Logout
+      </Button>
       <Routes>
         <Route
           path="/"
@@ -65,7 +88,7 @@ function AuthenticatedApp() {
           element={<FavoritesPage favorites={favorites} />}
         />
       </Routes>
-    </div>
+    </Container>
   );
 }
 

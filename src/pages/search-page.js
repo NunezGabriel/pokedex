@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 
 import Input from "../components/input";
 import PokemonData from "../components/pokemon-data";
+import { CustomLink } from "../UnauthenticatedApp";
 import { getPokemon } from "../services/pokeapi-service";
+import { Button } from "../components/login-form";
 
 function useAsync(asyncCallback) {
   const [state, setState] = useState({
@@ -61,10 +63,13 @@ function SearchPage({ favorites, onAddFavorite, onRemoveFavorite }) {
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
+    <div style={{ display: "grid", justifyItems: "center", gap: "30px" }}>
+      <form
+        onSubmit={handleSubmit}
+        style={{ display: "flex", gap: "15px", alignItems: "center" }}
+      >
         <Input name="query" placeholder="pokemon name" />
-        <button>Search</button>
+        <Button style={{ padding: "5px 10px" }}>Search</Button>
       </form>
       {status === "pending" && "Loading..."}
       {status === "idle" && "Ready to search"}
@@ -78,7 +83,9 @@ function SearchPage({ favorites, onAddFavorite, onRemoveFavorite }) {
       )}
       {status === "error" && <p style={{ color: "red" }}>{error.message}</p>}
 
-      <Link to="/favorites">Go to Favorites</Link>
+      <Link to="/favorites" style={{ textDecoration: "none" }}>
+        <CustomLink>Go to Favorites</CustomLink>
+      </Link>
     </div>
   );
 }

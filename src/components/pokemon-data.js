@@ -21,6 +21,13 @@ const FavoriteButton = styled("button")`
   cursor: pointer;
 `;
 
+function obtenerElementoAleatorio(arr) {
+  const indiceAleatorio = Math.floor(Math.random() * arr.length);
+  const elementoAleatorio = arr[indiceAleatorio];
+  return elementoAleatorio;
+}
+const miArray = [1, 2, 3, 4, 5];
+
 function formatId(id) {
   id = String(id);
   const new_id =
@@ -30,6 +37,8 @@ function formatId(id) {
 }
 
 function PokemonData({ pokemon, onAddFavorite, onRemoveFavorite, isFavorite }) {
+  let pokeColor = "white";
+
   const regularContent = (
     <>
       <RiStarFill color={colors.gray.light} />
@@ -43,9 +52,27 @@ function PokemonData({ pokemon, onAddFavorite, onRemoveFavorite, isFavorite }) {
       Remove Favorite
     </>
   );
+  const miVariable = obtenerElementoAleatorio(miArray);
 
+  switch (miVariable) {
+    case 1:
+      pokeColor = "#ff81f2";
+      break;
+    case 2:
+      pokeColor = "#22fff8";
+      break;
+    case 3:
+      pokeColor = "yellow";
+      break;
+    case 4:
+      pokeColor = "#4eff6d";
+      break;
+    case 5:
+      pokeColor = "#c729ff";
+      break;
+  }
   return (
-    <div>
+    <div style={{ display: "grid", gap: "10px", color: pokeColor }}>
       <h2>{pokemon?.name}</h2>
       <p>{formatId(pokemon.id)}</p>
       <PokeImage

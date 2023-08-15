@@ -5,13 +5,27 @@ import { colors } from "./styles";
 import LoginForm from "./components/login-form";
 import SignupForm from "./components/signup-form";
 
-const CustomLink = styled("button")`
+export const CustomLink = styled("button")`
   background: none;
   border: none;
   cursor: pointer;
+  color: ${colors.gray.medium};
+  transition: 1s;
   &:hover {
-    color: ${colors.gray.medium};
+    color: orange;
   }
+`;
+
+export const Container = styled.div`
+  margin: 90px auto;
+  border: 1px solid orange;
+  width: fit-content;
+  display: grid;
+  background-color: #191919;
+  padding: 30px;
+  border-radius: 15px;
+  gap: 25px;
+  min-height: 400px;
 `;
 
 function UnauthenticatedApp() {
@@ -22,14 +36,14 @@ function UnauthenticatedApp() {
   }
 
   return (
-    <div>
-      <h1>Welcome to Poke Collection</h1>
+    <Container>
+      <h1 style={{ color: "orange" }}>Welcome to your pokedex</h1>
       {showLogin ? <LoginForm /> : <SignupForm />}
 
       <CustomLink onClick={handleLinkClick}>
         {showLogin ? "Create Account" : "Login"}
       </CustomLink>
-    </div>
+    </Container>
   );
 }
 

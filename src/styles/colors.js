@@ -83,5 +83,5 @@ export const colors = {
     500: "#3B82F6",
   },
 
-  background: "#F7F7F7",
+  background: "black",
 };
